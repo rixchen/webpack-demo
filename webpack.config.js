@@ -6,12 +6,12 @@ const TerserPlugin = require('terser-webpack-plugin');
 module.exports = {
   mode: 'development',
   entry: {
-    index: './src/index'
+    index: './src/index',
   },
   output: {
     filename: '[name].[contenthash].js',
     path: path.resolve(__dirname, 'dist'),
-    clean: true //构建前清理
+    clean: true, //构建前清理
   },
 
   devtool: 'inline-source-map', // 报错信息
@@ -20,7 +20,7 @@ module.exports = {
     compress: true,
     host: 'localhost',
     port: 8000,
-    hot: true
+    hot: true,
   },
   // stats: {
   //     assets: true,
@@ -31,8 +31,8 @@ module.exports = {
     minimize: true,
     minimizer: [
       new TerserPlugin({
-        exclude: /\/node_modules/
-      })
+        exclude: /\/node_modules/,
+      }),
     ],
     moduleIds: 'deterministic',
     runtimeChunk: 'single',
@@ -41,40 +41,40 @@ module.exports = {
         vendor: {
           test: /[\\/]node_modules[\\/]/, // 提取第三方库
           name: 'vendors',
-          chunks: 'all'
-        }
-      }
-    }
+          chunks: 'all',
+        },
+      },
+    },
   },
   module: {
     rules: [
       {
         test: /\.tsx?$/,
         exclude: /node_modules/,
-        use: ['babel-loader', 'ts-loader']
+        use: ['babel-loader', 'ts-loader'],
       },
       {
         test: /\.css$/i,
-        use: ['style-loader', 'css-loader']
+        use: ['style-loader', 'css-loader'],
       },
       {
         test: /\.(png|jpg|jpeg|gif|svg)$/i,
-        type: 'asset/resource'
-      }
-    ]
+        type: 'asset/resource',
+      },
+    ],
   },
   resolve: {
     extensions: ['.ts', '.tsx', '.js', '.jsx'],
     alias: {
-      '@': path.resolve(__dirname, 'src/')
-    }
+      '@': path.resolve(__dirname, 'src/'),
+    },
   },
   plugins: [
     new HtmlWebpackPlugin({
       // s generate a index.html
       title: 'webpack5.0练习',
-      template: 'public/index.html'
+      template: 'public/index.html',
     }),
-    new webpack.HotModuleReplacementPlugin()
-  ]
+    new webpack.HotModuleReplacementPlugin(),
+  ],
 };
