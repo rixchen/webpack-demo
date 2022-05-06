@@ -1,5 +1,4 @@
 import { User } from './searchPanel'
-import React from 'react'
 interface Project {
     id: string
     name: string

@@ -1,5 +1,3 @@
-import React from 'react'
-
 export interface User {
     name: string
     id: string
